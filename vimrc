@@ -459,6 +459,7 @@ Bundle 'tacahiroy/ctrlp-funky'
 Bundle 'The-NERD-Commenter'
 Bundle 'rking/ag.vim'
 Bundle 'majutsushi/tagbar'
+"Bundle 'scrooloose/syntastic'
 "django
 "Bundle 'django_templates.vim'
 "Bundle 'Django-Projects'
@@ -570,5 +571,13 @@ function! s:unite_settings()
       "     " Enable navigation with control-j and control-k in insert mode
     imap <buffer> <C-j>   <Plug>(unite_select_next_line)
     imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
-     endfunction
+endfunction
 
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
