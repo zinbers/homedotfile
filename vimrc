@@ -46,8 +46,8 @@ set shortmess=atI   " 启动的时候不显示那个援助乌干达儿童的提�
 set go=             " 不要图形按钮  
 "color desert     " 设置背景主题 
 set background=dark
-"colorscheme solarized
-colors ron     " 设置背景主题  
+colorscheme solarized
+"colors ron     " 设置背景主题  
 "color torte     " 设置背景主题  
 "set guifont=Courier_New:h10:cANSI   " 设置字体  
 "autocmd InsertLeave * se nocul  " 用浅色高亮当前行  
