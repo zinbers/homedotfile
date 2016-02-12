@@ -20,10 +20,6 @@ au FileType html setlocal dict+=~/.vim/dict/javascript.dict
 au FileType html setlocal dict+=~/.vim/dict/css.dict
 
 "
-"syntastic相关
-execute pathogen#infect()
-let g:syntastic_python_checkers=['pylint']
-let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
 "golang
 "Processing... % (ctrl+c to stop)
 let g:fencview_autodetect=0
@@ -31,7 +27,6 @@ set rtp+=$GOROOT/misc/vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 显示相关  
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-execute pathogen#infect()
 syntax enable
 "if has('gui_running')
 "    set background=light
@@ -46,7 +41,11 @@ set shortmess=atI   " 启动的时候不显示那个援助乌干达儿童的提�
 set go=             " 不要图形按钮  
 "color desert     " 设置背景主题 
 set background=dark
-colorscheme solarized
+let g:solarized_termcolors=256
+let g:solarized_termtrans=1
+let g:solarized_contrast="normal"
+let g:solarized_visibility="normal"
+color solarized
 "colors ron     " 设置背景主题  
 "color torte     " 设置背景主题  
 "set guifont=Courier_New:h10:cANSI   " 设置字体  
@@ -372,9 +371,11 @@ let Tlist_Exist_OnlyWindow = 1  " 如果只有一个buffer，kill窗口也kill�
 ""let Tlist_Enable_Fold_Column = 0    " 不要显示折叠树  
 "let Tlist_Show_One_File=1            "不同时显示多个文件的tag，只显示当前文件的
 "设置tags  
-"set tags=tags  
-"set autochdir 
-
+set tags=tags  
+let g:autochdir = 1
+if exists('g:autochdir')
+    autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
+endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "其他东东
@@ -459,7 +460,7 @@ Bundle 'tacahiroy/ctrlp-funky'
 Bundle 'The-NERD-Commenter'
 Bundle 'rking/ag.vim'
 Bundle 'majutsushi/tagbar'
-"Bundle 'scrooloose/syntastic'
+Bundle 'scrooloose/syntastic'
 "django
 "Bundle 'django_templates.vim'
 "Bundle 'Django-Projects'
@@ -469,11 +470,13 @@ Bundle "xolox/vim-session"
 Bundle "terryma/vim-multiple-cursors"
 Bundle 'vim-startify'
 Bundle 'Shougo/unite.vim'
+Bundle 'farseer90718/vim-taskwarrior'
 Bundle 'bling/vim-airline'
 Bundle 'Shougo/vimproc.vim'
 Bundle 'Shougo/vimshell.vim'
 Bundle 'Shougo/neocomplete.vim'
 Bundle 'tsukkee/unite-tag'
+Bundle "nathanaelkane/vim-indent-guides"
 
 "Bundle 'FredKSchott/CoVim'
 "Bundle 'djangojump'
@@ -509,8 +512,7 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-inoremap jk <ESC>
-inoremap kj <ESC>
+inoremap jj <ESC>
 nnoremap ; :
 nnoremap <up> <nop>
 nnoremap <down> <nop>
@@ -581,3 +583,4 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let $JS_CMD='node'
